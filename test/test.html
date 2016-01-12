@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>testdialog</title>
+</head>
+<body>
+
+<a href="javascript:confirm()">confirm</a>
+<a href="javascript:alert()">alert</a>
+<a href="javascript:toast()">toast</a>
+<a href="javascript:loading_open()">loading open</a>
+<a href="javascript:loading_close()">loading close</a>
+<a href="javascript:actionsheet()">actionsheet</a>
+<script src="../bower_components/tp.zepto/zepto.min.js"></script>
+<script src="../src/popwindow.js"></script>
+<script>
+
+
+
+
+    function confirm() {
+        tp.Dialog.confirm({
+            content: "是否继续？",
+            cancel: function () {
+                console.log("取消");
+            }, success: function () {
+                console.log("继续");
+            }
+        });
+    }
+
+    function alert() {
+        tp.Dialog.alert({
+            content: "手机号码错误",
+            success: function () {
+                console.log("手机号码错误");
+            }
+        });
+    }
+    function toast(){
+        tp.Dialog.toast();
+    }
+
+
+    var loadingCtrl=tp.Dialog.loading({
+        isshow:false
+    });
+    function loading_open(){
+        loadingCtrl.open();
+    }
+    function loading_close(){
+        loadingCtrl.close();
+    }
+    function actionsheet(){
+        tp.Dialog.actionsheet({
+            cells: [
+                {
+                    text: "选我吧",
+                    success: function () {
+                        console.log("选我吧");
+                    }
+                },
+                {
+                    text: "选他吧",
+                    success: function () {
+                        console.log("选他吧");
+                    }
+                },
+                {
+                    text: "选人吧",
+                    success: function () {
+                        console.log("选人吧");
+                    }
+                },
+                {
+                    text: "选xx吧",
+                    success: function () {
+                        console.log("选xx吧");
+                    }
+                },
+                {
+                    text: "asdasdasdasdasdasdasd选他吧",
+                    success: function () {
+                        console.log("asdasdasdasdasdasdasd选他吧");
+                    }
+                }
+            ],
+            cancel_callback: function () {
+                console.log("已经取消");
+            }
+        });
+    }
+
+
+</script>
+</body>
+</html>

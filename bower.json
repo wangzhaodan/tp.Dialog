@@ -1,0 +1,18 @@
+{
+  "name": "popwindow",
+  "version": "0.0.0",
+  "authors": [
+    "wzd"
+  ],
+  "license": "none",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "tp.zepto": "*"
+  }
+}
