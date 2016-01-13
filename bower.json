@@ -13,6 +13,7 @@
     "tests"
   ],
   "dependencies": {
-    "tp.zepto": "*"
+    "tp.zepto": "*",
+    "tp.motion": "*"
   }
 }

@@ -48,7 +48,7 @@
         .TP_btn_dialog.default {color: #353535;}\
         .TP_btn_dialog.primary {color: #0BB20C;}\
         .TP_mask {position: fixed;z-index: 1;width: 100%;height: 100%;top: 0;left: 0;background: rgba(0, 0, 0, 0.6);}\
-        .TP_dialog {position: fixed;z-index: 13;width: 85%;top: 50%;left: 50%; -webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);background-color: #FAFAFC;text-align: center;border-radius: 3px;}\
+        .TP_dialog {position: fixed;z-index: 13;width: 85%;top:50%;left: 50%; -webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);background-color: #FAFAFC;text-align: center;border-radius: 3px;}\
        .TP_dialog_confirm .TP_dialog .TP_dialog_hd {padding: 1.2em 20px .5em;}\
        .TP_dialog_confirm .TP_dialog .TP_dialog_bd {text-align: left;}\
         .TP_dialog_hd {padding: 1.2em 0 .5em;}\
@@ -64,9 +64,10 @@
         .TP_btn_dialog.default {color: #353535;}\
         .TP_btn_dialog.primary {color: #0BB20C;}\
         @media screen and (min-width: 1024px) {.TP_dialog {width: 35%;}}\
-        .TP_toast {position: fixed;z-index: 3;width: 7.6em;min-height: 7.6em;top: 180px;left: 50%;margin-left: -3.8em;background: rgba(40, 40, 40, 0.75);text-align: center;border-radius: 5px;color: #FFFFFF;}\
-        .TP_icon_toast {margin: 22px 0 0;display: block;}\
-        .TP_icon_toast:before {content: \'\\EA08\';color: #FFFFFF;font-size: 55px;}\
+        .TP_toast {position: fixed;z-index: 3;width: 7.6em;min-height: 7.6em;top: 30%;left: 50%;margin-left: -3.8em;background: rgba(40, 40, 40, 0.75);text-align: center;border-radius: 5px;color: #FFFFFF;}\
+        .TP_mask_transparent {position: fixed;z-index: 1;width: 100%;height: 100%;top: 0;left: 0;}\
+        .TP_icon_toast{margin: 22px 0 0;display: block;height: 60px;}\
+        .TP_icon_toast{background:url(http://d.pcs.baidu.com/thumbnail/1bac5f553cd71321bae9a2c4797e4249?fid=1496060233-250528-705715212166665&time=1452661200&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-EY8fWHg2m9XUlIzR4%2bEvskys7OU%3d&expires=8h&chkbd=0&chkv=0&dp-logid=291339640475001986&dp-callid=0&size=c1920_u1200&quality=90);background-size:65%;background-position-x: 50%;background-repeat: no-repeat;}\
         .TP_toast_content {margin: 0 0 15px;}\
         .TP_loading_toast .TP_toast_content {margin-top: 64%;font-size: 14px;}\
         .TP_loading {position: absolute;width: 0px;z-index: 2000000000;left: 50%;top: 38%;}\
@@ -150,7 +151,7 @@
                     <div class="TP_mask_transparent"></div>\
                     <div class="TP_toast">\
                     <i class="TP_icon_toast"></i>\
-                    <p  class="TP_toast_content">get~</p>\
+                    <p  class="TP_toast_content"></p>\
                     </div>\
                     </div>',
         loading: '\
@@ -185,8 +186,9 @@
                 </div>\
                 </div>\
                 </div>',
-        actionsheet_cell:'<div  class="TP_actionsheet_cell"></div>'
+        actionsheet_cell:'<div class="TP_actionsheet_cell"></div>'
     };
+
     //对话框默认值设置
     var defaults = {
         alert: {
@@ -257,7 +259,7 @@
             //.TP_dialog_alert不存在时,在body标签下添加html
             if ($(".TP_dialog_alert").size() == 0)
                 $("body").append(tpls.alert);
-            //console.log(tpls.alert);
+
 
             var _DOM = $(".TP_dialog_alert");
             _DOM.find(".TP_dialog_title").text(opts.title);
@@ -269,19 +271,22 @@
             _DOM.removeClass("hide");
         },
         confirm: function (options, success_callback, cancel_callback) {
+            //判断options是否为对象值
             if (!$.isPlainObject(options)) {
                 options = {
                     content: options
                 };
+                //success_callback的回调
                 if (success_callback && $.isFunction(success_callback)) {
                     options.success = success_callback;
                 }
+                //cancel_callback的回调
                 if (cancel_callback && $.isFunction(cancel_callback)) {
                     options.cancel = cancel_callback;
                 }
             }
 
-
+            //将传入的参数重新扩展成一个对象,相对与覆盖默认的对象值
             var opts = $.extend({}, defaults.confirm, options);
             if (opts.content == "" || opts.content == null || opts.content == false || $.type(opts.content) != "string") {
                 return;
@@ -292,22 +297,23 @@
             if (!$.isFunction(opts.cancel)) {
                 opts.cancel = $.noop;
             }
-
+            //判断过后,在body标签下添加html代码
             if ($(".TP_dialog_confirm").size() == 0) {
                 $("body").append(tpls.confirm);
-
             }
-
+            //将传入的对象参数进行动态配置到html中
             var _DOM = $(".TP_dialog_confirm");
             _DOM.find(".TP_dialog_title").text(opts.title);
             _DOM.find(".TP_dialog_bd").html(opts.content);
             _DOM.find(".TP_btn_dialog.default").text(opts.cancel_text).off("tap").on("tap", function () {
                 _DOM.addClass("hide");
+                //回调函数
                 opts.cancel();
             });
 
             _DOM.find(".TP_btn_dialog.primary").text(opts.ok_text).off("tap").on("tap", function () {
                 _DOM.addClass("hide");
+                //回调函数
                 opts.success();
             });
             _DOM.removeClass("hide");
@@ -320,27 +326,29 @@
                 options = {
                     content: options
                 };
-                //将回调函数赋值给options.success
+                //判断传入参数timeout的值类型为number,如果是,赋值
                 if ($.type(timeout) == "number") {
                     options.timeout = timeout;
                 }
             }
             //赋值,将options的值赋给defaults.alert,再将defaults.alert赋值给{},生成一个新的对象
             var opts = $.extend({}, defaults.toast, options);
-            //当opts不符合条件时,中断返回
             if (opts.content == "" || opts.content == null || opts.content == false || $.type(opts.content) != "string") {
                 return;
             }
+            //传入参数timeout的值类型为不是number,更改为number类型
             if ($.type(timeout) != "number") {
                 opts.timeout = 1;
             }
-            //.TP_toast_不存在时,在body标签下添加html
+
             if ($(".TP_complete_toast").size() == 0)
                 $("body").append(tpls.toast);
 
             var _DOM = $(".TP_complete_toast");
             _DOM.find(".TP_toast_content").html(opts.content);
             _DOM.removeClass("hide");
+
+            //用于指定时间内,调用函数;
             setTimeout(function () {
                 _DOM.addClass("hide");
             }, opts.timeout * 1000);
@@ -352,20 +360,20 @@
                     content: options
                 };
             }
-            //赋值,将options的值赋给defaults.alert,再将defaults.alert赋值给{},生成一个新的对象
             var opts = $.extend({}, defaults.loading, options);
-            //当opts不符合条件时,中断返回
             if (opts.content == "" || opts.content == null || opts.content == false || $.type(opts.content) != "string") {
                 return;
             }
-
-            //.TP_toast_不存在时,在body标签下添加html
             if ($(".TP_loading_toast").size() == 0)
                 $("body").append(tpls.loading);
 
             var _DOM = $(".TP_loading_toast");
             _DOM.find(".TP_toast_content").html(opts.content);
-            if (opts.isshow)_DOM.removeClass("hide");
+
+            if (opts.isshow)
+                _DOM.removeClass("hide");
+
+            //返回两个函数,open和close,
             return {
                 open: function () {
                     _DOM.removeClass("hide");
@@ -377,9 +385,8 @@
         },
         actionsheet: function (options, cancel_callback) {
 
-
-
             var opts = $.extend({}, defaults.actionsheet, options);
+
             if (!$.isArray(opts.cells)) {
                 return;
             }
@@ -391,15 +398,17 @@
             if ($(".actionSheet_wrap").size() == 0)
                 $("body").append(tpls.actionsheet);
 
-
             var _DOM = $(".actionSheet_wrap");
 
+
+            //
             _DOM.find(".TP_actionsheet_menu").html("");
             var cells_html="";
             $.each(opts.cells, function (i, cell) {
                 _DOM.find(".TP_actionsheet_menu").append($(tpls.actionsheet_cell).html(cell.text).off("tap").on("tap", function () {
                     _DOM.addClass("hide");
-                    if($.isFunction(cell.success))cell.success();
+                    if($.isFunction(cell.success)) cell.success();
+
                 }));
 
             });

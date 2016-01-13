@@ -7,15 +7,52 @@
 </head>
 <body>
 
-<a href="javascript:confirm()">confirm</a>
-<a href="javascript:alert()">alert</a>
-<a href="javascript:toast()">toast</a>
-<a href="javascript:loading_open()">loading open</a>
-<a href="javascript:loading_close()">loading close</a>
-<a href="javascript:actionsheet()">actionsheet</a>
+
+
+<div> <input  class="abc" type="text" value="confirmm" /> </div>
+
+
+
+<div> <input type="text" value="confirm" onclick="confirm()"/></div>
+<div> <input type="text" value="alert" onclick="alert()"/></div>
+<div> <input type="text" value="toast" onclick="toast()"/></div>
+<div> <input type="text" value="loading_open" onclick="loading_open()"/></div>
+<div> <input type="text" value="loading_close" onclick="loading_close()"/></div>
+<div> <input type="text" value="actionsheet" onclick="actionsheet()"/></div>
+
+<div> <input type="text" value="confirm" onkeypress="confirm()"/></div>
+<div> <input type="text" value="alert" onkeypress="alert()"/></div>
+<div> <input type="text" value="toast" onkeypress="toast()"/></div>
+<div> <input type="text" value="loading_open" onkeypress="loading_open()"/></div>
+<div> <input type="text" value="loading_close" onkeypress="loading_close()"/></div>
+<div> <input type="text" value="actionsheet" onkeypress="actionsheet()"/></div>
+
+
+<div><a href="javascript:confirm()">confirm</a></div>
+<div><a href="javascript:alert()">alert</a></div>
+<div><a href="javascript:toast()">toast</a></div>
+<div><a href="javascript:loading_open()">loading open</a></div>
+<div><a href="javascript:loading_close()">loading close</a></div>
+<div><a href="javascript:actionsheet()">actionsheet</a></div>
+
+
 <script src="../bower_components/tp.zepto/zepto.min.js"></script>
-<script src="../src/popwindow.js"></script>
+<script src="../bower_components/tp.motion/dialog.min.js"></script>
 <script>
+
+    $(function () {
+      $(".abc").on('tap', function () {
+          new mo.Dialog({
+              content: '你确定要这样做吗？',
+              type: 'alert'
+          });
+      })
+    })
+</script>
+<script src="../src/Dialog.js"></script>
+<script>
+
+
 
 
 
@@ -47,9 +84,15 @@
     var loadingCtrl=tp.Dialog.loading({
         isshow:false
     });
+
     function loading_open(){
         loadingCtrl.open();
+        setTimeout(function(){
+            loading_close();
+        },2000);
     }
+
+
     function loading_close(){
         loadingCtrl.close();
     }
