@@ -1,5 +1,9 @@
 /**
- * Created by wzd on 16/1/8.
+ * Created by hejun on 16/1/15.
+ *  纯前端配置-弹窗Doalog
+ *  1.加载js后 请先执行init方法
+ *  2.本组件依赖 zepto 自动加载 自动依赖
+ *  3.全局对象 window.tp.Dialog
  */
 (function ($) {
 
