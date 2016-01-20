@@ -7,11 +7,7 @@
 </head>
 <body>
 
-
-
 <div> <input  class="abc" type="text" value="confirmm" /> </div>
-
-
 
 <div> <input type="text" value="confirm" onclick="confirm()"/></div>
 <div> <input type="text" value="alert" onclick="alert()"/></div>
@@ -49,12 +45,10 @@
       })
     })
 </script>
+
 <script src="../src/Dialog.js"></script>
+
 <script>
-
-
-
-
 
 
     function confirm() {
@@ -62,7 +56,8 @@
             content: "是否继续？",
             cancel: function () {
                 console.log("取消");
-            }, success: function () {
+            },
+            success: function () {
                 console.log("继续");
             }
         });
@@ -76,6 +71,7 @@
             }
         });
     }
+
     function toast(){
         tp.Dialog.toast();
     }

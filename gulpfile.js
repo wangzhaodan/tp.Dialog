@@ -24,7 +24,7 @@ var gulp = require('gulp'),
 //默认配置
 var config = {
     distPath: 'dist/',
-    appPath: 'app/',
+    appPath: 'src/',
     default: '',
     cdn: 'http://images-menma-me.b0.upaiyun.com/yxh.realty.menma.me/microloushu/'
 };

@@ -49,8 +49,8 @@
         .TP_btn_dialog.primary {color: #0BB20C;}\
         .TP_mask {position: fixed;z-index: 1;width: 100%;height: 100%;top: 0;left: 0;background: rgba(0, 0, 0, 0.6);}\
         .TP_dialog {position: fixed;z-index: 13;width: 85%;top:50%;left: 50%; -webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);background-color: #FAFAFC;text-align: center;border-radius: 3px;}\
-       .TP_dialog_confirm .TP_dialog .TP_dialog_hd {padding: 1.2em 20px .5em;}\
-       .TP_dialog_confirm .TP_dialog .TP_dialog_bd {text-align: left;}\
+        .TP_dialog_confirm .TP_dialog .TP_dialog_hd {padding: 1.2em 20px .5em;}\
+        .TP_dialog_confirm .TP_dialog .TP_dialog_bd {text-align: left;}\
         .TP_dialog_hd {padding: 1.2em 0 .5em;}\
         .TP_dialog_title {font-weight: 400;font-size: 17px;}\
         .TP_dialog_bd {padding: 0 20px;font-size: 15px;color: #888;}\
@@ -67,7 +67,7 @@
         .TP_toast {position: fixed;z-index: 3;width: 7.6em;min-height: 7.6em;top: 30%;left: 50%;margin-left: -3.8em;background: rgba(40, 40, 40, 0.75);text-align: center;border-radius: 5px;color: #FFFFFF;}\
         .TP_mask_transparent {position: fixed;z-index: 1;width: 100%;height: 100%;top: 0;left: 0;}\
         .TP_icon_toast{margin: 22px 0 0;display: block;height: 60px;}\
-        .TP_icon_toast{background:url(http://d.pcs.baidu.com/thumbnail/1bac5f553cd71321bae9a2c4797e4249?fid=1496060233-250528-705715212166665&time=1452661200&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-EY8fWHg2m9XUlIzR4%2bEvskys7OU%3d&expires=8h&chkbd=0&chkv=0&dp-logid=291339640475001986&dp-callid=0&size=c1920_u1200&quality=90);background-size:65%;background-position-x: 50%;background-repeat: no-repeat;}\
+        .TP_icon_toast{background:url(http://images-menma-me.b0.upaiyun.com/public/success.jpeg);background-size:65%;background-position-x: 50%;background-repeat: no-repeat;}\
         .TP_toast_content {margin: 0 0 15px;}\
         .TP_loading_toast .TP_toast_content {margin-top: 64%;font-size: 14px;}\
         .TP_loading {position: absolute;width: 0px;z-index: 2000000000;left: 50%;top: 38%;}\
@@ -186,7 +186,7 @@
                 </div>\
                 </div>\
                 </div>',
-        actionsheet_cell:'<div class="TP_actionsheet_cell"></div>'
+        actionsheet_cell: '<div class="TP_actionsheet_cell"></div>'
     };
 
     //对话框默认值设置
@@ -222,7 +222,7 @@
         actionsheet: {
             cells: [
                 {
-                    text:"",
+                    text: "",
                     success: function () {
                     }
                 }
@@ -259,6 +259,22 @@
             //.TP_dialog_alert不存在时,在body标签下添加html
             if ($(".TP_dialog_alert").size() == 0)
                 $("body").append(tpls.alert);
+
+            //判断安卓和ios
+            var u = navigator.userAgent;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isiOS) {
+                if ((window.innerHeight>400&&window.innerHeight<416)||(window.innerHeight>416&&window.innerHeight<504)||(window.innerHeight>504&&window.innerHeight<603)||(window.innerHeight>603&&window.innerHeight<672)) {
+                    $(".TP_dialog").css({'top': document.body.clientHeight / 2 + 'px'});
+                }
+                else {
+                    $(".TP_dialog").css({'top': document.body.clientHeight / 3+ 'px'});
+                }
+            }
+            //else {
+            //    $(".TP_dialog").css({'top': document.body.clientHeight / 2 + 'px'})
+            //}
 
 
             var _DOM = $(".TP_dialog_alert");
@@ -301,6 +317,23 @@
             if ($(".TP_dialog_confirm").size() == 0) {
                 $("body").append(tpls.confirm);
             }
+
+
+            //判断安卓机和ios
+            var u = navigator.userAgent;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
+            if (isiOS) {
+                if ((window.innerHeight>400&&window.innerHeight<416)||(window.innerHeight>416&&window.innerHeight<504)||(window.innerHeight>504&&window.innerHeight<603)||(window.innerHeight>603&&window.innerHeight<672)) {
+                    $(".TP_dialog").css({'top': document.body.clientHeight / 2 + 'px'});
+                }
+                else {
+                    $(".TP_dialog").css({'top': document.body.clientHeight / 3+ 'px'});
+                }
+            }
+
+
             //将传入的对象参数进行动态配置到html中
             var _DOM = $(".TP_dialog_confirm");
             _DOM.find(".TP_dialog_title").text(opts.title);
@@ -344,6 +377,23 @@
             if ($(".TP_complete_toast").size() == 0)
                 $("body").append(tpls.toast);
 
+
+            //判断安卓机和ios
+            var u = navigator.userAgent;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isiOS) {
+                if (isiOS) {
+                    if ((window.innerHeight>400&&window.innerHeight<416)||(window.innerHeight>416&&window.innerHeight<504)||(window.innerHeight>504&&window.innerHeight<603)||(window.innerHeight>603&&window.innerHeight<672)) {
+                        $(".TP_toast").css({'top': document.body.clientHeight / 2 + 'px'});
+                    }
+                    else {
+                        $(".TP_toast").css({'top': document.body.clientHeight / 4+ 'px'});
+                    }
+                }
+            }
+
+
             var _DOM = $(".TP_complete_toast");
             _DOM.find(".TP_toast_content").html(opts.content);
             _DOM.removeClass("hide");
@@ -366,6 +416,23 @@
             }
             if ($(".TP_loading_toast").size() == 0)
                 $("body").append(tpls.loading);
+
+            //判断安卓机和ios
+            var u = navigator.userAgent;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isiOS) {
+                if (isiOS) {
+                    if ((window.innerHeight>400&&window.innerHeight<416)||(window.innerHeight>416&&window.innerHeight<504)||(window.innerHeight>504&&window.innerHeight<603)||(window.innerHeight>603&&window.innerHeight<672)) {
+                        $(".TP_toast").css({'top': document.body.clientHeight / 2 + 'px'});
+                    }
+                    else {
+                        $(".TP_toast").css({'top': document.body.clientHeight / 4+ 'px'});
+                    }
+                }
+
+            }
+
 
             var _DOM = $(".TP_loading_toast");
             _DOM.find(".TP_toast_content").html(opts.content);
@@ -403,11 +470,11 @@
 
             //
             _DOM.find(".TP_actionsheet_menu").html("");
-            var cells_html="";
+            var cells_html = "";
             $.each(opts.cells, function (i, cell) {
                 _DOM.find(".TP_actionsheet_menu").append($(tpls.actionsheet_cell).html(cell.text).off("tap").on("tap", function () {
                     _DOM.addClass("hide");
-                    if($.isFunction(cell.success)) cell.success();
+                    if ($.isFunction(cell.success)) cell.success();
 
                 }));
 
