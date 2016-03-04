@@ -1,8 +1,8 @@
 {
-  "name": "popwindow",
-  "version": "0.0.0",
+  "name": "tp.Dialog",
+  "version": "1.0.1",
   "authors": [
-    "wzd"
+    "wzd <822678230@qq.com>"
   ],
   "license": "none",
   "ignore": [
@@ -13,7 +13,7 @@
     "tests"
   ],
   "dependencies": {
-    "tp.zepto": "*",
-    "tp.motion": "*"
-  }
+    "tp.zepto": "*"
+  },
+  "main":"src/Dialog.js"
 }

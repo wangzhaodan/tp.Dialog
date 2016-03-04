@@ -5,6 +5,7 @@
  *  2.本组件依赖 zepto 自动加载 自动依赖
  *  3.全局对象 window.tp.Dialog
  */
+
 (function ($) {
 
 
@@ -57,7 +58,7 @@
         .TP_dialog_confirm .TP_dialog .TP_dialog_bd {text-align: left;}\
         .TP_dialog_hd {padding: 1.2em 0 .5em;}\
         .TP_dialog_title {font-weight: 400;font-size: 17px;}\
-        .TP_dialog_bd {padding: 0 20px;font-size: 15px;color: #888;}\
+        .TP_dialog_bd {padding: 0 20px;font-size: 15px;color: #000;}\
         .TP_dialog_ft {position: relative;line-height: 42px;margin-top: 20px;font-size: 17px;display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;}\
         .TP_dialog_ft a {display: block; -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1;flex: 1;color: #3CC51F;text-decoration: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);}\
         .TP_dialog_ft a:active {background-color: #EEEEEE;}\
@@ -269,11 +270,11 @@
             var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
             var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
             if (isiOS) {
-                if ((window.innerHeight>400&&window.innerHeight<416)||(window.innerHeight>416&&window.innerHeight<504)||(window.innerHeight>504&&window.innerHeight<603)||(window.innerHeight>603&&window.innerHeight<672)) {
+                if ((window.innerHeight > 400 && window.innerHeight < 416) || (window.innerHeight > 416 && window.innerHeight < 504) || (window.innerHeight > 504 && window.innerHeight < 603) || (window.innerHeight > 603 && window.innerHeight < 672)) {
                     $(".TP_dialog").css({'top': document.body.clientHeight / 2 + 'px'});
                 }
                 else {
-                    $(".TP_dialog").css({'top': document.body.clientHeight / 3+ 'px'});
+                    $(".TP_dialog").css({'top': document.body.clientHeight / 3 + 'px'});
                 }
             }
             //else {
@@ -329,11 +330,11 @@
             var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 
             if (isiOS) {
-                if ((window.innerHeight>400&&window.innerHeight<416)||(window.innerHeight>416&&window.innerHeight<504)||(window.innerHeight>504&&window.innerHeight<603)||(window.innerHeight>603&&window.innerHeight<672)) {
+                if ((window.innerHeight > 400 && window.innerHeight < 416) || (window.innerHeight > 416 && window.innerHeight < 504) || (window.innerHeight > 504 && window.innerHeight < 603) || (window.innerHeight > 603 && window.innerHeight < 672)) {
                     $(".TP_dialog").css({'top': document.body.clientHeight / 2 + 'px'});
                 }
                 else {
-                    $(".TP_dialog").css({'top': document.body.clientHeight / 3+ 'px'});
+                    $(".TP_dialog").css({'top': document.body.clientHeight / 3 + 'px'});
                 }
             }
 
@@ -388,11 +389,11 @@
             var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
             if (isiOS) {
                 if (isiOS) {
-                    if ((window.innerHeight>400&&window.innerHeight<416)||(window.innerHeight>416&&window.innerHeight<504)||(window.innerHeight>504&&window.innerHeight<603)||(window.innerHeight>603&&window.innerHeight<672)) {
+                    if ((window.innerHeight > 400 && window.innerHeight < 416) || (window.innerHeight > 416 && window.innerHeight < 504) || (window.innerHeight > 504 && window.innerHeight < 603) || (window.innerHeight > 603 && window.innerHeight < 672)) {
                         $(".TP_toast").css({'top': document.body.clientHeight / 2 + 'px'});
                     }
                     else {
-                        $(".TP_toast").css({'top': document.body.clientHeight / 4+ 'px'});
+                        $(".TP_toast").css({'top': document.body.clientHeight / 4 + 'px'});
                     }
                 }
             }
@@ -427,11 +428,11 @@
             var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
             if (isiOS) {
                 if (isiOS) {
-                    if ((window.innerHeight>400&&window.innerHeight<416)||(window.innerHeight>416&&window.innerHeight<504)||(window.innerHeight>504&&window.innerHeight<603)||(window.innerHeight>603&&window.innerHeight<672)) {
+                    if ((window.innerHeight > 400 && window.innerHeight < 416) || (window.innerHeight > 416 && window.innerHeight < 504) || (window.innerHeight > 504 && window.innerHeight < 603) || (window.innerHeight > 603 && window.innerHeight < 672)) {
                         $(".TP_toast").css({'top': document.body.clientHeight / 2 + 'px'});
                     }
                     else {
-                        $(".TP_toast").css({'top': document.body.clientHeight / 4+ 'px'});
+                        $(".TP_toast").css({'top': document.body.clientHeight / 4 + 'px'});
                     }
                 }
 
